@@ -28,7 +28,7 @@ pipeline {
         stage('Cleanup Workspace') {
             steps {
                 cleanWs()
-                sh """
+                bat """
                 echo "Cleaned Up Workspace for ${APP_NAME}"
                 """
             }
@@ -46,13 +46,13 @@ pipeline {
 
         stage('Code Build') {
             steps {
-                 sh 'mvn install -Dmaven.test.skip=true'
+                 bat 'mvn install -Dmaven.test.skip=true'
             }
         }
 
         stage('Priting All Global Variables') {
             steps {
-                sh """
+                bat """
                 env
                 """
             }
