@@ -1,8 +1,8 @@
 
 pipeline {
 
-    agent {
-        node {
+    agent any
+        node any
             label 'SLAVE01'
         }
     }
