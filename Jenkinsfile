@@ -2,10 +2,6 @@
 pipeline {
 
     agent any
-        node any
-            label 'SLAVE01'
-        }
-    }
 
     tools { 
         maven 'maven3' 
@@ -19,8 +15,8 @@ pipeline {
     }
 
     environment {
-        APP_NAME = "DCUBE_APP"
-        APP_ENV  = "DEV"
+        APP_NAME = 'DCUBE_APP'
+        APP_ENV  = 'DEV'
     }
 
     stages {
@@ -28,7 +24,7 @@ pipeline {
         stage('Cleanup Workspace') {
             steps {
                 cleanWs()
-                bat """
+                sh """
                 echo "Cleaned Up Workspace for ${APP_NAME}"
                 """
             }
@@ -46,13 +42,13 @@ pipeline {
 
         stage('Code Build') {
             steps {
-                 bat 'mvn install -Dmaven.test.skip=true'
+                 sh 'mvn install -Dmaven.test.skip=true'
             }
         }
 
-        stage('Priting All Global Variables') {
+        stage('Printing All Global Variables') {
             steps {
-                bat """
+                sh """
                 env
                 """
             }
